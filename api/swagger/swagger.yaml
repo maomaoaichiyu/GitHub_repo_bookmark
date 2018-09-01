@@ -44,6 +44,65 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /repos:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: bookmarks_controller
+    get:
+      description: Returns all the bookmarked GitHub repos
+      # used as the method name of the controller
+      operationId: bookmarkedAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              # a pointer to a definition
+              $ref: "#/definitions/RepoDetails"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /repos/{id}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: bookmarks_controller
+    put:
+      description: bookmark a repo 
+      # used as the method name of the controller
+      operationId: bookmark
+      parameters:
+        - name: id
+          in: path
+          description: The id of a repo to be bookmarked
+          required: True
+          type: string
+      responses:
+        "200":
+          description: Success
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      description: delete a bookmark 
+      # used as the method name of the controller
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          description: The id of a repo to be unbookmarked
+          required: True
+          type: string
+      responses:
+        "200":
+          description: Success
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"         
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
