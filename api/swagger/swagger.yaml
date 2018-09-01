@@ -35,8 +35,10 @@ paths:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/SearchReposResponse"
+            type: array
+            items:
+              # a pointer to a definition
+              $ref: "#/definitions/RepoDetails"
         # responses may fall through to errors
         default:
           description: Error
@@ -46,14 +48,17 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  SearchReposResponse:
+  RepoDetails:
     required:
       - id
       - name
+      - url
     properties:
       name:
         type: string
       id:
+        type: string
+      url:
         type: string
   ErrorResponse:
     required:
