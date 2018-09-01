@@ -10,7 +10,7 @@
 
   It is a good idea to list the modules that your application depends on in the package.json in the project root
  */
-var util = require('util');
+let util = require('util');
 
 /*
  Once you 'require' a module you can reference the things that it exports.  These are defined in module.exports.
@@ -25,7 +25,7 @@ var util = require('util');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  hello: hello
+  search: search
 };
 
 /*
@@ -34,11 +34,15 @@ module.exports = {
   Param 1: a handle to the request object
   Param 2: a handle to the response object
  */
-function hello(req, res) {
+function search(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
-  var name = req.swagger.params.name.value || 'stranger';
-  var hello = util.format('Hello, %s!', name);
+  console.log(req.swagger.params);
+  let text = req.swagger.params.text.value || '';
+  let response = {
+    id: 'this is an id',
+    name: `this is a name for ${text}`
+  };
 
   // this sends back a JSON response which is a single string
-  res.json(hello);
+  res.json(response);
 }
