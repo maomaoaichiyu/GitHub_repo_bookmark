@@ -77,6 +77,12 @@ paths:
           description: The id of a repo to be bookmarked
           required: True
           type: string
+        - name: repo
+          in: body
+          description: the full object body of repo
+          required: True
+          schema:
+            $ref: "#/definitions/RepoDetails"
       responses:
         "200":
           description: Success
