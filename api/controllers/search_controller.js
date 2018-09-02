@@ -8,7 +8,7 @@ module.exports = {
   search: search,
 };
 
-function search(req, res) {
+function search(req, res, next) {
   let text = req.swagger.params.text.value || '';
   let options = {
     url: GITHUBSEARCHAPI,
@@ -27,5 +27,6 @@ function search(req, res) {
       name: result.name,
       url: result.html_url,
     })))
-    .then(response => res.json(response));
+    .then(response => res.json(response))
+    .catch(next);
 }

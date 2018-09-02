@@ -11,10 +11,14 @@ let yaml = require('yamljs');
 let swaggerDocument = yaml.load('./api/swagger/swagger.yaml');
 swaggerDocument.host = process.env.SERVER_URL || swaggerDocument.host;
 
-var app = express();
-swagger_setup(app);
-
+let app = express();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+swagger_setup(app).then(() => {
+  app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).json({errorMessage: err.message || 'Unknown error'});
+  });
+});
 
-var port = process.env.PORT || 10010;
+let port = process.env.PORT || 10010;
 app.listen(port);
