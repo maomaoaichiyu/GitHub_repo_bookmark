@@ -1,10 +1,18 @@
-const should = require('should');
-const request = require('supertest');
-const server = require('../../../app');
-const nock = require('nock');
-const github_response = require('../helpers/github_response')
+let should = require('should');
+let request = require('supertest');
+let express = require('express');
+let swagger_setup = require('../../../swagger-setup');
+let nock = require('nock');
+let github_response = require('../helpers/github_response')
 
 describe('controllers', function() {
+
+  let app = undefined;
+
+  before(() => {
+    app = express();
+    return swagger_setup(app);
+  })
 
   describe('search_controller', function() {
 
@@ -16,7 +24,7 @@ describe('controllers', function() {
           .query(true)
           .reply(200, github_response);
 
-        return request(server)
+        return request(app)
           .get('/search')
           .query({text: 'somethingmeaningful'})
           .set('Accept', 'application/json')
