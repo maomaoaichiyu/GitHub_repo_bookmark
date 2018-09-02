@@ -10,9 +10,9 @@ module.exports = {
     let repos_array = [];
     Object.keys(bookmarked_repos).forEach(repoId => {
       repos_array.push({
-        id:repoId,
-        repo: bookmarked_repos[repoId]
-      })
+        id: repoId,
+        repo: bookmarked_repos[repoId],
+      });
     });
     return Promise.resolve(repos_array);
   },
@@ -25,4 +25,4 @@ module.exports = {
     delete bookmarked_repos[repoId];
     return Promise.resolve();
   },
-}
+};

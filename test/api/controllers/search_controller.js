@@ -1,18 +1,21 @@
+'use strict';
+
+// eslint-disable-next-line no-unused-vars
 let should = require('should');
 let request = require('supertest');
 let express = require('express');
 let swagger_setup = require('../../../swagger-setup');
 let nock = require('nock');
-let github_response = require('../helpers/github_response')
+let github_response = require('../helpers/github_response');
 
 describe('controllers', function() {
 
-  let app = undefined;
+  let app;
 
   before(() => {
     app = express();
     return swagger_setup(app);
-  })
+  });
 
   describe('search_controller', function() {
 
@@ -30,9 +33,9 @@ describe('controllers', function() {
           .set('Accept', 'application/json')
           .expect(200)
           .then(response => {
-              let result = response.body;
-              result.length.should.eql(1);
-              result[0].id.should.eql(211666);
+            let result = response.body;
+            result.length.should.eql(1);
+            result[0].id.should.eql(211666);
           });
       });
 

@@ -14,12 +14,16 @@
     "swagger-express-mw": "^0.7.0"
   },
   "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "nock": "^9.6.1",
     "should": "^7.1.0",
-    "supertest": "^3.1.0",
-    "nock": "^9.6.1"
+    "supertest": "^3.1.0"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "swagger project test"
+    "test": "swagger project test",
+    "lint": "eslint --ignore-path .gitignore .",
+    "autofix": "eslint --ignore-path .gitignore --fix ."
   }
 }

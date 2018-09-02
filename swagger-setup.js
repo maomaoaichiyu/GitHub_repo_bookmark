@@ -3,7 +3,7 @@
 let SwaggerExpress = require('swagger-express-mw');
 module.exports = function(app) {
   var config = {
-    appRoot: __dirname // required config
+    appRoot: __dirname, // required config
   };
 
   return new Promise(function(resolve, reject) {
@@ -14,4 +14,4 @@ module.exports = function(app) {
       resolve(app);
     });
   });
-}
+};
