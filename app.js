@@ -15,8 +15,14 @@ let app = express();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 swagger_setup(app).then(() => {
   app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    res.status(500).json({errorMessage: err.message || 'Unknown error'});
+    let statusCode = err.statusCode || 500;
+    let message;
+    if (err.errors && err.errors.length > 0) {
+      message = err.errors[0].message;
+    } else {
+      message = err.message || 'Unknown error';
+    }
+    res.status(statusCode).json({errorMessage: message});
   });
 });
 
