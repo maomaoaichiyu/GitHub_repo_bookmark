@@ -10,6 +10,9 @@ let swaggerUi = require('swagger-ui-express');
 let yaml = require('yamljs');
 let swaggerDocument = yaml.load('./api/swagger/swagger.yaml');
 swaggerDocument.host = process.env.SERVER_URL || swaggerDocument.host;
+if (process.env.NODE_ENV !== 'production') {
+  swaggerDocument.schemes.push('http');
+}
 
 let app = express();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
