@@ -35,8 +35,8 @@ describe('controller', function() {
       });
 
       it('should return all the bookmarked repos', function() {
-        let repo0 = {id: '0', name: 'test0', url: 'url0'};
-        let repo1 = {id: '1', name: 'test1', url: 'url1'};
+        let repo0 = {id: 0, name: 'test0', url: 'url0'};
+        let repo1 = {id: 1, name: 'test1', url: 'url1'};
         let application = request(app);
         return application
           .put(`/repos/${repo0.id}`)
@@ -65,7 +65,7 @@ describe('controller', function() {
       beforeEach(() => store.reset());
 
       it('should add the repo', function() {
-        let repo0 = {id: '0', name: 'test0', url: 'url0'};
+        let repo0 = {id: 0, name: 'test0', url: 'url0'};
         return request(app)
           .put(`/repos/${repo0.id}`)
           .send(repo0)
@@ -78,7 +78,7 @@ describe('controller', function() {
               .then(response => {
                 let result = response.body;
                 result.length.should.eql(1);
-                result[0].id.should.eql('0');
+                result[0].id.should.eql(0);
               });
           });
       });
@@ -89,7 +89,7 @@ describe('controller', function() {
       beforeEach(() => store.reset());
 
       it('should delete the repo', function() {
-        let repo0 = {id: '0', name: 'test0', url: 'url0'};
+        let repo0 = {id: 0, name: 'test0', url: 'url0'};
         return request(app)
           .put(`/repos/${repo0.id}`)
           .send(repo0)
@@ -102,7 +102,7 @@ describe('controller', function() {
               .then(response => {
                 let result = response.body;
                 result.length.should.eql(1);
-                result[0].id.should.eql('0');
+                result[0].id.should.eql(0);
               });
           })
           .then(() => {
