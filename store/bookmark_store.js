@@ -1,20 +1,13 @@
 'use strict';
 
-let bookmarked_repos = [];
+let bookmarked_repos = {};
 module.exports = {
   reset: function() {
-    bookmarked_repos = [];
+    bookmarked_repos = {};
     return Promise.resolve();
   },
   getAllBookemarkedRepos: function() {
-    let repos_array = [];
-    Object.keys(bookmarked_repos).forEach(repoId => {
-      repos_array.push({
-        id: repoId,
-        repo: bookmarked_repos[repoId],
-      });
-    });
-    return Promise.resolve(repos_array);
+    return Promise.resolve(Object.values(bookmarked_repos));
   },
   addRepoToStore: function(id, repo) {
     let repo_id = id;
