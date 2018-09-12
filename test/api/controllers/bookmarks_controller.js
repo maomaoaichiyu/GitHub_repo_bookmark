@@ -110,7 +110,7 @@ describe('controller', function() {
               .delete('/repos/0')
               .query({})
               .set('Accept', 'application/json')
-              .expect(200)
+              .expect(204)
               .then(() => {
                 return request(app)
                   .get('/repos')
