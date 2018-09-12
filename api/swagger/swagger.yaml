@@ -82,7 +82,7 @@ paths:
           schema:
             $ref: "#/definitions/RepoDetails"
       responses:
-        "200":
+        "204":
           description: Success
         # responses may fall through to errors
         default:
@@ -100,7 +100,7 @@ paths:
           required: True
           type: string
       responses:
-        "200":
+        "204":
           description: Success
         # responses may fall through to errors
         default:

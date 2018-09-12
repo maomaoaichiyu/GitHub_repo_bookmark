@@ -1,6 +1,6 @@
 'use strict';
 
-let store = require('../../store/bookmark_store');
+const store = require('../../store/bookmark_store');
 
 module.exports = {
   bookmarkedAll: getAllBookmarked,
@@ -14,14 +14,14 @@ function getAllBookmarked(req, res) {
 }
 
 function addBookmark(req, res) {
-  let id = req.swagger.params.id.value;
-  let repo = req.swagger.params.repo.value;
+  const id = req.swagger.params.id.value;
+  const repo = req.swagger.params.repo.value;
   store.addRepoToStore(id, repo)
-    .then(() => { res.send(); });
+    .then(() => { res.sendStatus(204); });
 }
 
 function deleteBookmark(req, res) {
-  let id = req.swagger.params.id.value;
+  const id = req.swagger.params.id.value;
   store.deleteRepoById(id)
-    .then(() => { res.send(); });
+    .then(() => { res.sendStatus(204); });
 }

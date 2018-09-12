@@ -1,11 +1,11 @@
 'use strict';
 
 // eslint-disable-next-line no-unused-vars
-let should = require('should');
-let request = require('supertest');
-let express = require('express');
-let swagger_setup = require('../../../swagger-setup');
-let store = require('../../../store/bookmark_store');
+const should = require('should');
+const request = require('supertest');
+const express = require('express');
+const swagger_setup = require('../../../swagger-setup');
+const store = require('../../../store/bookmark_store');
 
 describe('controller', function() {
 
@@ -29,15 +29,15 @@ describe('controller', function() {
           .set('Accept', 'application/json')
           .expect(200)
           .then(response => {
-            let result = response.body;
+            const result = response.body;
             result.length.should.eql(0);
           });
       });
 
       it('should return all the bookmarked repos', function() {
-        let repo0 = {id: 0, name: 'test0', url: 'url0'};
-        let repo1 = {id: 1, name: 'test1', url: 'url1'};
-        let application = request(app);
+        const repo0 = {id: 0, name: 'test0', url: 'url0'};
+        const repo1 = {id: 1, name: 'test1', url: 'url1'};
+        const application = request(app);
         return application
           .put(`/repos/${repo0.id}`)
           .send(repo0)
@@ -53,7 +53,7 @@ describe('controller', function() {
               .set('Accept', 'application/json')
               .expect(200)
               .then(response => {
-                let result = response.body;
+                const result = response.body;
                 result.length.should.eql(2);
               });
           });
@@ -65,7 +65,7 @@ describe('controller', function() {
       beforeEach(() => store.reset());
 
       it('should add the repo', function() {
-        let repo0 = {id: 0, name: 'test0', url: 'url0'};
+        const repo0 = {id: 0, name: 'test0', url: 'url0'};
         return request(app)
           .put(`/repos/${repo0.id}`)
           .send(repo0)
@@ -76,7 +76,7 @@ describe('controller', function() {
               .set('Accept', 'application/json')
               .expect(200)
               .then(response => {
-                let result = response.body;
+                const result = response.body;
                 result.length.should.eql(1);
                 result[0].id.should.eql(0);
               });
@@ -89,7 +89,7 @@ describe('controller', function() {
       beforeEach(() => store.reset());
 
       it('should delete the repo', function() {
-        let repo0 = {id: 0, name: 'test0', url: 'url0'};
+        const repo0 = {id: 0, name: 'test0', url: 'url0'};
         return request(app)
           .put(`/repos/${repo0.id}`)
           .send(repo0)
@@ -100,7 +100,7 @@ describe('controller', function() {
               .set('Accept', 'application/json')
               .expect(200)
               .then(response => {
-                let result = response.body;
+                const result = response.body;
                 result.length.should.eql(1);
                 result[0].id.should.eql(0);
               });
@@ -118,7 +118,7 @@ describe('controller', function() {
                   .set('Accept', 'application/json')
                   .expect(200)
                   .then(response => {
-                    let result = response.body;
+                    const result = response.body;
                     result.length.should.eql(0);
                   });
               });

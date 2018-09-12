@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 'use strict';
 
-let response = {
+const response = {
   total_count: 186792,
   incomplete_results: false,
   items: [

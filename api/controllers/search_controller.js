@@ -1,6 +1,6 @@
 'use strict';
 
-let request = require('request-promise-native');
+const request = require('request-promise-native');
 const GITHUBSEARCHAPI = 'https://api.github.com/search/repositories';
 const AUTHENTICATION = process.env.AUTHENTICATION;
 
@@ -9,8 +9,8 @@ module.exports = {
 };
 
 function search(req, res, next) {
-  let text = req.swagger.params.text.value || '';
-  let options = {
+  const text = req.swagger.params.text.value || '';
+  const options = {
     url: GITHUBSEARCHAPI,
     qs: {
       q: text,
